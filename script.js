@@ -131,7 +131,7 @@
         '<td>' + fmtTime(act.start) + ' &ndash; ' + fmtTime(act.end) + '</td>' +
         '<td>' +
         '<span class="act-badge">' + label + '</span>' +
-        '<div class="act-title">' + escHtml(act.title || '&mdash;') + '</div>' +
+        '<div class="act-title">' + escHtml(act.title || '') + '</div>' +
         (act.desc ? '<div class="act-desc">' + escHtml(act.desc) + '</div>' : '') +
         '</td>' +
         '</tr>';
