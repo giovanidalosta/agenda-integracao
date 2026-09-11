@@ -65,15 +65,16 @@ body {
   display: flex;
   align-items: center;
   gap: .6rem;
-  font-size: .95rem;
+  font-size: .120rem;
   font-weight: 700;
   color: #fff;
   letter-spacing: .02em
 }
 
 .header-logo {
-  height: 45px !important;
+  height: 50px !important;
   width: auto !important;
+  padding-bottom: 5px;
 }
 
 /* Layout */
@@ -338,7 +339,7 @@ textarea {
 
 .doc-logo {
   width: 80px;
-  height: px;
+  height: 80px;
   border-radius: 16px;
   background: rgba(255, 255, 255, .08);
   border: 1px solid rgba(255, 255, 255, .15);
@@ -351,7 +352,7 @@ textarea {
 
 .doc-logo img {
   max-width: 64px;
-  max-height: 24px;
+  max-height: 45px;
   object-fit: contain
 }
 
