@@ -1,5 +1,5 @@
 ﻿/**
- * Ikatec - Agenda de Integracao
+ * Ikatec - Agenda de Integração
  * Pure JavaScript - no framework.
  */
 (function () {
@@ -10,14 +10,14 @@
   var activities = [];
 
   /* DOM refs */
-  var collabNameEl        = document.getElementById('collabName');
-  var integrationDateEl   = document.getElementById('integrationDate');
-  var addActivityBtn      = document.getElementById('addActivityBtn');
+  var collabNameEl = document.getElementById('collabName');
+  var integrationDateEl = document.getElementById('integrationDate');
+  var addActivityBtn = document.getElementById('addActivityBtn');
   var activitiesContainer = document.getElementById('activitiesContainer');
-  var generateBtn         = document.getElementById('generateBtn');
-  var exportPdfBtn        = document.getElementById('exportPdfBtn');
-  var exportPngBtn        = document.getElementById('exportPngBtn');
-  var agendaDoc           = document.getElementById('agendaDoc');
+  var generateBtn = document.getElementById('generateBtn');
+  var exportPdfBtn = document.getElementById('exportPdfBtn');
+  var exportPngBtn = document.getElementById('exportPngBtn');
+  var agendaDoc = document.getElementById('agendaDoc');
 
   /* Helpers */
   function fmtTime(t) {
@@ -42,11 +42,11 @@
   }
 
   var TYPE_LABELS = {
-    normal:   'Normal',
-    free:     'Horario Livre',
-    lunch:    'Almoco',
+    normal: 'Normal',
+    free: 'Horario Livre',
+    lunch: 'Almoco',
     training: 'Treinamento',
-    meeting:  'Reuniao'
+    meeting: 'Reuniao'
   };
 
   /* Create activity card */
@@ -60,28 +60,28 @@
     card.dataset.id = id;
     card.innerHTML =
       '<div class="card-header">' +
-        '<span>Atividade ' + id + '</span>' +
-        '<button class="remove-btn" title="Remover">' +
-          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">' +
-          '<path d="M18 6 6 18M6 6l12 12"/></svg>' +
-        '</button>' +
+      '<span>Atividade ' + id + '</span>' +
+      '<button class="remove-btn" title="Remover">' +
+      '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">' +
+      '<path d="M18 6 6 18M6 6l12 12"/></svg>' +
+      '</button>' +
       '</div>' +
       '<div class="time-row">' +
-        '<div class="field"><label>Inicio</label><input type="time" class="js-start" /></div>' +
-        '<div class="field"><label>Fim</label><input type="time" class="js-end" /></div>' +
+      '<div class="field"><label>Inicio</label><input type="time" class="js-start" /></div>' +
+      '<div class="field"><label>Fim</label><input type="time" class="js-end" /></div>' +
       '</div>' +
-      '<div class="field"><label>Titulo</label>' +
-        '<input type="text" class="js-title" placeholder="Ex.: Integracao com RH" /></div>' +
-      '<div class="field"><label>Descricao</label>' +
-        '<textarea class="js-desc" placeholder="Detalhes da atividade..."></textarea></div>' +
+      '<div class="field"><label>Título</label>' +
+      '<input type="text" class="js-title" placeholder="Ex.: Integração com RH" /></div>' +
+      '<div class="field"><label>Descrição</label>' +
+      '<textarea class="js-desc" placeholder="Detalhes da atividade..."></textarea></div>' +
       '<div class="field"><label>Tipo</label>' +
-        '<select class="js-type">' +
-          '<option value="normal">Normal</option>' +
-          '<option value="free">Horario Livre</option>' +
-          '<option value="lunch">Almoco</option>' +
-          '<option value="training">Treinamento</option>' +
-          '<option value="meeting">Reuniao</option>' +
-        '</select></div>';
+      '<select class="js-type">' +
+      '<option value="normal">Normal</option>' +
+      '<option value="free">Horario Livre</option>' +
+      '<option value="lunch">Almoco</option>' +
+      '<option value="training">Treinamento</option>' +
+      '<option value="meeting">Reuniao</option>' +
+      '</select></div>';
 
     /* Remove handler */
     card.querySelector('.remove-btn').addEventListener('click', function () {
@@ -96,10 +96,10 @@
       var a = activities.find(function (a) { return a.id === id; });
       if (!a) return;
       a.start = card.querySelector('.js-start').value;
-      a.end   = card.querySelector('.js-end').value;
+      a.end = card.querySelector('.js-end').value;
       a.title = card.querySelector('.js-title').value;
-      a.desc  = card.querySelector('.js-desc').value;
-      a.type  = card.querySelector('.js-type').value;
+      a.desc = card.querySelector('.js-desc').value;
+      a.type = card.querySelector('.js-type').value;
       renderAgenda();
     }
 
@@ -114,9 +114,9 @@
 
   /* Render agenda document */
   function renderAgenda() {
-    var name    = collabNameEl.value.trim() || '[Nome do Colaborador]';
+    var name = collabNameEl.value.trim() || '[Nome do Colaborador]';
     var rawDate = integrationDateEl.value;
-    var dateStr = rawDate ? fmtDate(rawDate) : '[Data da Integracao]';
+    var dateStr = rawDate ? fmtDate(rawDate) : '[Data da Integração]';
 
     var sorted = activities.slice().sort(function (a, b) {
       return a.start.localeCompare(b.start);
@@ -128,12 +128,12 @@
       var label = TYPE_LABELS[act.type] || act.type;
       rowsHtml +=
         '<tr class="row-' + act.type + '">' +
-          '<td>' + fmtTime(act.start) + ' &ndash; ' + fmtTime(act.end) + '</td>' +
-          '<td>' +
-            '<span class="act-badge">' + label + '</span>' +
-            '<div class="act-title">' + escHtml(act.title || '&mdash;') + '</div>' +
-            (act.desc ? '<div class="act-desc">' + escHtml(act.desc) + '</div>' : '') +
-          '</td>' +
+        '<td>' + fmtTime(act.start) + ' &ndash; ' + fmtTime(act.end) + '</td>' +
+        '<td>' +
+        '<span class="act-badge">' + label + '</span>' +
+        '<div class="act-title">' + escHtml(act.title || '&mdash;') + '</div>' +
+        (act.desc ? '<div class="act-desc">' + escHtml(act.desc) + '</div>' : '') +
+        '</td>' +
         '</tr>';
     });
 
@@ -144,26 +144,26 @@
     agendaDoc.innerHTML =
       '<div class="doc-stripe"></div>' +
       '<div class="doc-header">' +
-        '<div class="doc-logo">' +
-          '<img src="logo.png" alt="Ikatec" onerror="this.style.display=\'none\';this.parentElement.innerHTML=\'<span class=doc-logo-placeholder>IK</span>\'" />' +
-        '</div>' +
-        '<div class="doc-title-area">' +
-          '<div class="doc-label">Ikatec Tecnologia e Inovacao</div>' +
-          '<div class="doc-title">Agenda de Integracao</div>' +
-          '<div class="doc-welcome">Bem-vindo(a) a Ikatec, ' + escHtml(name) + '!</div>' +
-        '</div>' +
+      '<div class="doc-logo">' +
+      '<img src="logo.png" alt="Ikatec" onerror="this.style.display=\'none\';this.parentElement.innerHTML=\'<span class=doc-logo-placeholder>IK</span>\'" />' +
+      '</div>' +
+      '<div class="doc-title-area">' +
+      '<div class="doc-label">Ikatec Tecnologia e Inovacao</div>' +
+      '<div class="doc-title">Agenda de Integração</div>' +
+      '<div class="doc-welcome">Bem-vindo(a) a Ikatec, ' + escHtml(name) + '!</div>' +
+      '</div>' +
       '</div>' +
       '<div class="doc-info-band">' +
-        '<div class="doc-info-item"><div class="doc-info-label">Colaborador</div><div class="doc-info-value">' + escHtml(name) + '</div></div>' +
-        '<div class="doc-info-item"><div class="doc-info-label">Data da Integracao</div><div class="doc-info-value">' + dateStr + '</div></div>' +
+      '<div class="doc-info-item"><div class="doc-info-label">Colaborador</div><div class="doc-info-value">' + escHtml(name) + '</div></div>' +
+      '<div class="doc-info-item"><div class="doc-info-label">Data da Integração</div><div class="doc-info-value">' + dateStr + '</div></div>' +
       '</div>' +
       '<div class="doc-body">' +
-        '<div class="doc-section-label">Programacao do Dia</div>' +
-        tableHtml +
+      '<div class="doc-section-label">Programação do Dia</div>' +
+      tableHtml +
       '</div>' +
       '<div class="doc-footer">' +
-        '<span class="doc-footer-tag">Tecnologia e inovacao para transformar negocios e pessoas</span>' +
-        '<span class="doc-footer-logo"><svg width="16" height="16" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="#09A8C9"/><path d="M8 14h12M14 8v12" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg> Ikatec</span>' +
+      '<span class="doc-footer-tag">Tecnologia e inovação para transformar negócios e pessoas</span>' +
+      '<span class="doc-footer-logo"><svg width="16" height="16" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="#09A8C9"/><path d="M8 14h12M14 8v12" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg> Ikatec</span>' +
       '</div>';
   }
 
