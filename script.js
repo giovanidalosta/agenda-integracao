@@ -143,51 +143,50 @@
 
     agendaDoc.innerHTML =
       `<div class="doc-stripe"></div><div class="doc-header"><div class="doc-logo"><img src="logo.png" alt="Ikatec" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=doc-logo-placeholder>IK</span>'" /></div><div class="doc-title-area"><div class="doc-label">Ikatec Tecnologia e Inovacao</div><div class="doc-title">Agenda de Integração</div><div class="doc-welcome">Bem-vindo(a) a Ikatec, ${escHtml(name)}!</div></div></div><div class="doc-info-band"><div class="doc-info-item"><div class="doc-info-label">Colaborador</div><div class="doc-info-value">${escHtml(name)}</div></div><div class="doc-info-item"><div class="doc-info-label">Data da Integração</div><div class="doc-info-value">${dateStr}</div></div></div><div class="doc-body"><div class="doc-section-label">Programação do Dia</div>${tableHtml}</div><div class="doc-footer"><span class="doc-footer-tag">Tecnologia e inovação para transformar negócios e pessoas</span><span class="doc-footer-logo"><img src="logo.png" alt="Logo Ikatec" class="footer-logo" onerror="this.style.display='none'"></span></div>`;
+  }
+  /* Export PDF */
+  function exportToPdf() {
+    var orig = exportPdfBtn.innerHTML;
+    exportPdfBtn.textContent = 'Gerando...';
+    exportPdfBtn.disabled = true;
+    html2canvas(agendaDoc, { scale: 2, useCORS: true, backgroundColor: '#ffffff' }).then(function (canvas) {
+      var imgData = canvas.toDataURL('image/png');
+      var jsPDF = window.jspdf.jsPDF;
+      var pdf = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
+      var pdfW = pdf.internal.pageSize.getWidth();
+      var pdfH = (canvas.height * pdfW) / canvas.width;
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfW, pdfH);
+      pdf.save('agenda-integracao.pdf');
+    }).finally(function () {
+      exportPdfBtn.innerHTML = orig;
+      exportPdfBtn.disabled = false;
+    });
+  }
 
+  /* Export PNG */
+  function exportToPng() {
+    var orig = exportPngBtn.innerHTML;
+    exportPngBtn.textContent = 'Gerando...';
+    exportPngBtn.disabled = true;
+    html2canvas(agendaDoc, { scale: 2, useCORS: true, backgroundColor: '#ffffff' }).then(function (canvas) {
+      var link = document.createElement('a');
+      link.download = 'agenda-integracao.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }).finally(function () {
+      exportPngBtn.innerHTML = orig;
+      exportPngBtn.disabled = false;
+    });
+  }
 
-    /* Export PDF */
-    function exportToPdf() {
-      var orig = exportPdfBtn.innerHTML;
-      exportPdfBtn.textContent = 'Gerando...';
-      exportPdfBtn.disabled = true;
-      html2canvas(agendaDoc, { scale: 2, useCORS: true, backgroundColor: '#ffffff' }).then(function (canvas) {
-        var imgData = canvas.toDataURL('image/png');
-        var jsPDF = window.jspdf.jsPDF;
-        var pdf = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
-        var pdfW = pdf.internal.pageSize.getWidth();
-        var pdfH = (canvas.height * pdfW) / canvas.width;
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfW, pdfH);
-        pdf.save('agenda-integracao.pdf');
-      }).finally(function () {
-        exportPdfBtn.innerHTML = orig;
-        exportPdfBtn.disabled = false;
-      });
-    }
+  /* Event listeners */
+  addActivityBtn.addEventListener('click', createActivityCard);
+  generateBtn.addEventListener('click', renderAgenda);
+  exportPdfBtn.addEventListener('click', exportToPdf);
+  exportPngBtn.addEventListener('click', exportToPng);
+  collabNameEl.addEventListener('input', renderAgenda);
+  integrationDateEl.addEventListener('input', renderAgenda);
 
-    /* Export PNG */
-    function exportToPng() {
-      var orig = exportPngBtn.innerHTML;
-      exportPngBtn.textContent = 'Gerando...';
-      exportPngBtn.disabled = true;
-      html2canvas(agendaDoc, { scale: 2, useCORS: true, backgroundColor: '#ffffff' }).then(function (canvas) {
-        var link = document.createElement('a');
-        link.download = 'agenda-integracao.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-      }).finally(function () {
-        exportPngBtn.innerHTML = orig;
-        exportPngBtn.disabled = false;
-      });
-    }
-
-    /* Event listeners */
-    addActivityBtn.addEventListener('click', createActivityCard);
-    generateBtn.addEventListener('click', renderAgenda);
-    exportPdfBtn.addEventListener('click', exportToPdf);
-    exportPngBtn.addEventListener('click', exportToPng);
-    collabNameEl.addEventListener('input', renderAgenda);
-    integrationDateEl.addEventListener('input', renderAgenda);
-
-    /* Initial render */
-    renderAgenda();
-  }) ();
+  /* Initial render */
+  renderAgenda();
+})();
