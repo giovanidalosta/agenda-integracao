@@ -14,7 +14,7 @@
   --c-free: #C1CFE0;
   --c-lunch: #12990d;
   --c-training: #2F435E;
-  --c-meeting: #101720;
+  --c-meeting: #C6F3FC;
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
@@ -521,7 +521,7 @@ textarea {
 
 .row-meeting td {
   background: rgba(243, 245, 249, 0.1);
-  color: #101720
+  color: #1e293b
 }
 
 .row-meeting td:first-child {
