@@ -576,6 +576,12 @@ textarea {
   color: var(--c-primary)
 }
 
+.footer-logo {
+  height: 20px;
+  width: auto;
+}
+
+
 /* Empty state */
 .empty-state {
   flex: 1;
