@@ -11,10 +11,10 @@
   --c-border: #E2E8F0;
   --c-muted: #8FA3BF;
   --c-normal: #09A8C9;
-  --c-free: #FF6B8A;
-  --c-lunch: #94A3B8;
-  --c-training: #7C3AED;
-  --c-meeting: #101720;
+  --c-free: #ff71c4;
+  --c-lunch: #23d70c;
+  --c-training: #6380cb;
+  --c-meeting: #4a38d1;
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
@@ -501,7 +501,7 @@ textarea {
 
 .row-lunch td {
   background: rgba(148, 163, 184, .12);
-  color: #475569
+  color: #23d70c
 }
 
 .row-lunch td:first-child {
