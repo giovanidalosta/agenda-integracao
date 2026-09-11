@@ -571,7 +571,7 @@ textarea {
   display: flex;
   align-items: center;
   gap: .4rem;
-  font-size: .78rem;
+  font-size: .50rem;
   font-weight: 700;
   color: var(--c-primary)
 }
