@@ -55,6 +55,11 @@ body {
   box-shadow: var(--shadow-md)
 }
 
+.app-header__brand img {
+  height: 32px;
+  width: auto;
+}
+
 .app-header__inner {
   display: flex;
   align-items: center;
