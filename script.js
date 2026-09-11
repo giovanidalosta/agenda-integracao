@@ -43,10 +43,10 @@
 
   var TYPE_LABELS = {
     normal: 'Normal',
-    free: 'Horario Livre',
-    lunch: 'Almoco',
+    free: 'Horário Livre',
+    lunch: 'Almoço',
     training: 'Treinamento',
-    meeting: 'Reuniao'
+    meeting: 'Reunião'
   };
 
   /* Create activity card */
