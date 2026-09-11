@@ -77,10 +77,10 @@
       '<div class="field"><label>Tipo</label>' +
       '<select class="js-type">' +
       '<option value="normal">Normal</option>' +
-      '<option value="free">Horario Livre</option>' +
-      '<option value="lunch">Almoco</option>' +
+      '<option value="free">Horário Livre</option>' +
+      '<option value="lunch">Almoço</option>' +
       '<option value="training">Treinamento</option>' +
-      '<option value="meeting">Reuniao</option>' +
+      '<option value="meeting">Reunião</option>' +
       '</select></div>';
 
     /* Remove handler */
